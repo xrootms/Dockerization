@@ -1,0 +1,18 @@
+vi Dockerfile
+
+FROM ubuntu:18.04
+ENV NAME saif
+ENV PASS passwd123
+RUN mkdir -p /var/run/sshd
+RUN apt update
+RUN apt install -y openssh-server
+RUN useradd -d /home/saif -g root -G sudo -m -p $(echo "$PASS" | openssl passwd -1 -stdin) $NAME 
+USER $NAME
+
+CMD ["/usr/sbin/sshd", "-D"]
+----------------------
+docker image build -t myimage .
+docker container run -itd -P myimage
+docker container ls
+ifconfig
+ssh saif@localhost -p 32788
