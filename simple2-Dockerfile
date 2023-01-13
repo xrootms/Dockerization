@@ -10,4 +10,4 @@ RUN tar -xvzf apache-tomcat-9.0.68.tar.gz
 RUN mv apache-tomcat-9.0.68/* /opt/tomcat
 EXPOSE 8080
 COPY ./webapp.war /opt/tomcat/webapps
-CMD ["/opt/tomcat/bin/catalina.sh, 'run'"]
+CMD ["/opt/tomcat/bin/catalina.sh", "run"]
